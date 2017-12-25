@@ -150,6 +150,16 @@ Module.register("MMM-Assistant", {
           description : this.translate("CMD_REBOOT_DESCRIPTION"),
           callback : 'cmd_asstnt_reboot',
         },
+        {
+          command: this.translate("CMD_DISPLAY_ON"),
+          description : this.translate("CMD_DISPLAY_ON_DESCRIPTION"),
+          callback : 'cmd_asstnt_display_on',
+        },
+        {
+          command: this.translate("CMD_DISPLAY_OFF"),
+          description : this.translate("CMD_DISPLAY_OFF_DESCRIPTION"),
+          callback : 'cmd_asstnt_display_off',
+        },
       ]
       commands.forEach((c) => {
         Register.add(c)
@@ -160,6 +170,18 @@ Module.register("MMM-Assistant", {
   cmd_asstnt_reboot : function (command, handler) {
     var text = ""
     this.sendSocketNotification('REBOOT')
+  },
+
+  cmd_asstnt_display_on : function (command, handler) {
+    var text = this.translate("CMD_DISPLAY_ON_DESCRIPTION")
+    this.sendSocketNotification('DISPLAY_ON')
+    handler.response(text)
+  },
+
+  cmd_asstnt_display_off : function (command, handler) {
+    var text = this.translate("CMD_DISPLAY_OFF_DESCRIPTION")
+    this.sendSocketNotification('DISPLAY_OFF')
+    handler.response(text)
   },
 
   cmd_asstnt_shutdown : function (command, handler) {
@@ -410,7 +432,9 @@ Module.register("MMM-Assistant", {
       case 'ERROR':
         this.status = "ERROR"
         console.log("[ASSTNT] Error:", payload)
-        //this.sendSocketNotification("HOTWORD_STANDBY")
+        // Recover from error and then go on standby
+        this.status = "HOTWORD_STANDBY";
+        this.sendSocketNotification("HOTWORD_STANDBY")
         break
       case 'MODE':
         this.status = payload.mode

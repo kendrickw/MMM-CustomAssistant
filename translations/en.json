@@ -23,6 +23,10 @@
   "CMD_SAY_DESCRIPTION" : "This command could speak anything which you want.",
   "CMD_REBOOT" : "reboot",
   "CMD_REBOOT_DESCRIPTION" : "This command could reboot the magic mirror instantly.",
+  "CMD_DISPLAY_OFF" : "display off",
+  "CMD_DISPLAY_OFF_DESCRIPTION" : "Switching off the display.",
+  "CMD_DISPLAY_ON" : "display on",
+  "CMD_DISPLAY_ON_DESCRIPTION" : "Switching on the display.",
   "CMD_SHUTDOWN" : "shut down",
   "CMD_SHUTDOWN_DESCRIPTION" : "This command could shutdown the magic mirror instantly.",
   "TELBOT_CMD_GA_DESCRIPTION" : "Send text to Google Assistant."

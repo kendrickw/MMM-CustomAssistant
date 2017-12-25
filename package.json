@@ -10,7 +10,7 @@
     "speaker": "0.4.0"
   },
   "devDependencies": {
-    "electron-rebuild": "1.6.0",
+    "electron-rebuild": "^1.6.0",
     "yarg": "1.0.8"
   }
 }

@@ -95,6 +95,16 @@ module.exports = NodeHelper.create({
           console.log(callback)
         })
         break
+      case 'DISPLAY_ON':
+        execute('vcgencmd display_power 1', function(callback){
+          console.log(callback)
+        })
+        break
+      case 'DISPLAY_OFF':
+        execute('vcgencmd display_power 0', function(callback){
+          console.log(callback)
+        })
+        break
       case 'TEST':
         this.test(payload)
         break
@@ -292,6 +302,8 @@ module.exports = NodeHelper.create({
         .on('error', (error) => {
           console.log('[ASSTNT] Conversation Error:', error);
           record.stop()
+          // speaker.end()
+          // this.sendSocketNotification('ASSISTANT_FINISHED', mode)
           this.sendSocketNotification('ERROR', 'CONVERSATION')
         })
 
@@ -324,7 +336,7 @@ module.exports = NodeHelper.create({
         console.log('[ASSTNT] Assistant Error:', error)
         record.stop()
         speaker.end()
-        this.sendScoketNotification('ERROR', 'ASSISTANT')
+        this.sendSocketNotification('ERROR', 'ASSISTANT')
       })
   },
 
