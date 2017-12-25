@@ -1,0 +1,4 @@
+node_modules/
+KendrickPi-*.json
+resources/tokens.js
+secret.json
